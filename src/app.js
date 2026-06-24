@@ -10,13 +10,19 @@ import { errorHandler } from "./shared/middlewares/errorHandler.js";
 import { AppError } from "./shared/errors/AppError.js";
 import { HTTP_STATUS } from "./constants/responseConstants.js";
 import cookieParser from "cookie-parser";
+import { ALLOWED_ORIGINS } from "./constants/constants.js";
 
 const app = express();
 
 // ── Middleware ──────
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: ALLOWED_ORIGINS,
+    credentials: true, // ← required for httpOnly cookies
+  }),
+);
 
 // app.use((req, res, next) => {
 //   //logs the req

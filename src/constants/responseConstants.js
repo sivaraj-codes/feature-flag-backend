@@ -20,8 +20,10 @@ export const HTTP_STATUS = {
 export const MESSAGES = {
   // auth
   LOGIN_SUCCESS: "Login successful",
+  LOGOUT_SUCCESS: "Logout successfull",
   SIGNUP_SUCCESS: "Signup successful",
   INVALID_CREDENTIALS: "Invalid credentials",
+  GET_USER_SUCCESS: "User fetched successfully",
   // orgs
   ORG_CREATED: "Organization created successfully",
   ORG_LIST_FETCHED: "Organizations fetched successfully",

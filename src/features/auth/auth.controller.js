@@ -32,3 +32,21 @@ export const login = async (req, res) => {
     data: { roleId, organizationId },
   });
 };
+
+export const logout = async (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+  });
+  sendSuccess({
+    res,
+    message: MESSAGES.LOGOUT_SUCCESS,
+  });
+};
+
+export const getUser = async (req, res) => {
+  sendSuccess({
+    res,
+    message: MESSAGES.GET_USER_SUCCESS,
+    data: { user: req.user },
+  });
+};

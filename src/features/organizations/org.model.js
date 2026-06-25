@@ -9,6 +9,14 @@ const orgSchema = new mongoose.Schema(
       trim: true,
       unique: true,
     },
+    isActive: {
+      type: Boolean,
+      required: [true, "Organization status is required"],
+    },
+    establishedYear: {
+      type: Number,
+      required: [true, "Established year is required"],
+    },
     createdBy: {
       type: String,
     },

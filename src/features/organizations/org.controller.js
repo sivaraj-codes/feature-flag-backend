@@ -23,6 +23,8 @@ export const getPublicOrganizations = async (req, res) => {
 export const createOrganization = async (req, res) => {
   const data = await orgService.createOrganization({
     name: req.body.name,
+    isActive: req.body.isActive,
+    establishedYear: req.body.establishedYear,
     createdBy: req.user.email,
   });
   sendSuccess({

@@ -6,40 +6,39 @@ import { USER_ROLES } from "../../constants/roleConstants.js";
 
 const router = Router();
 
-// EU only — check all flags for their org
-router.get(
-  "/check",
-  authenticate,
-  authorize(USER_ROLES.EU),
-  flagController.checkFlags,
-);
-
 // OA only — CRUD
 router.get(
   "/",
   authenticate,
-  authorize(USER_ROLES.OA),
+  authorize([USER_ROLES.OA, USER_ROLES.EU]),
   flagController.getFlags,
 );
 
 router.post(
   "/",
   authenticate,
-  authorize(USER_ROLES.OA),
+  authorize([USER_ROLES.OA]),
   flagController.createFlag,
+);
+
+router.get(
+  "/check",
+  authenticate,
+  authorize([USER_ROLES.EU]),
+  flagController.checkFlagStatus,
 );
 
 router.patch(
   "/:id",
   authenticate,
-  authorize(USER_ROLES.OA),
+  authorize([USER_ROLES.OA]),
   flagController.updateFlag,
 );
 
 router.delete(
   "/:id",
   authenticate,
-  authorize(USER_ROLES.OA),
+  authorize([USER_ROLES.OA]),
   flagController.deleteFlag,
 );
 

@@ -5,6 +5,16 @@ import { HTTP_STATUS } from "../../constants/responseConstants.js";
 export const getFlags = (organizationId) =>
   flagRepository.findByOrg(organizationId);
 
+export const checkFlagStatus = async (key, orgId) => {
+  const flag = await flagRepository.findFlagByKey(key, orgId);
+  console.log("flag", flag);
+  if (!flag) {
+    throw new AppError("Feature flag not found", HTTP_STATUS.NOT_FOUND);
+  }
+
+  return { key: flag.key, enabled: flag.enabled };
+};
+
 export const createFlag = async ({ key, enabled, organizationId }) => {
   if (!key || !key.trim()) {
     throw new AppError("Feature key is required", HTTP_STATUS.BAD_REQUEST);

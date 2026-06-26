@@ -11,6 +11,15 @@ export const getFlags = async (req, res) => {
   });
 };
 
+export const checkFlagStatus = async (req, res) => {
+  const { key } = req.query; // GET /flags/check?key=dark-mode
+  const orgId = req.user.organizationId; // from JWT via authenticate middleware
+
+  const result = await flagService.checkFlagStatus(key, orgId);
+
+  res.json({ success: true, data: result });
+};
+
 export const createFlag = async (req, res) => {
   const data = await flagService.createFlag({
     key: req.body.key,
@@ -46,14 +55,5 @@ export const deleteFlag = async (req, res) => {
   sendSuccess({
     res,
     message: MESSAGES.FLAG_DELETED,
-  });
-};
-
-export const checkFlags = async (req, res) => {
-  const data = await flagService.getFlags(req.user.organizationId);
-  sendSuccess({
-    res,
-    message: MESSAGES.FLAG_CHECKED,
-    data,
   });
 };

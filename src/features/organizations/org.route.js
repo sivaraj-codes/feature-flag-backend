@@ -13,13 +13,13 @@ router.get("/public", orgController.getPublicOrganizations);
 router.get(
   "/",
   authenticate,
-  authorize(USER_ROLES.SA),
+  authorize([USER_ROLES.SA]),
   orgController.getOrganizations,
 );
 router.post(
   "/",
   authenticate,
-  authorize(USER_ROLES.SA),
+  authorize([USER_ROLES.SA]),
   orgController.createOrganization,
 );
 

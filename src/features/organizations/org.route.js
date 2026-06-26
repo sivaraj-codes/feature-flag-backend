@@ -6,10 +6,8 @@ import { USER_ROLES } from "../../constants/roleConstants.js";
 
 const router = Router();
 
-// Public — for signup dropdown
 router.get("/public", orgController.getPublicOrganizations);
 
-// SA only
 router.get(
   "/",
   authenticate,

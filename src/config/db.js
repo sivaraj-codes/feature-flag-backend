@@ -4,7 +4,6 @@ export const connectDB = async () => {
   if (mongoose.connection.readyState === 1) {
     return mongoose.connection;
   }
-  // mongoose.connect() manages the connection pool internally.
   await mongoose.connect(process.env.MONGO_URI, {
     dbName: "featureFlagSystem",
   });

@@ -22,8 +22,6 @@ const featureFlagSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-// key must be unique within an organization
-// same key can exist in different orgs independently
 featureFlagSchema.index({ key: 1, organizationId: 1 }, { unique: true });
 
 export const FeatureFlag = mongoose.model(

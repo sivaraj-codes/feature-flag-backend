@@ -6,7 +6,6 @@ import { USER_ROLES } from "../../constants/roleConstants.js";
 
 const router = Router();
 
-// OA only — CRUD
 router.get(
   "/",
   authenticate,

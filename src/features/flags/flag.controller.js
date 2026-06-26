@@ -12,8 +12,8 @@ export const getFlags = async (req, res) => {
 };
 
 export const checkFlagStatus = async (req, res) => {
-  const { key } = req.query; // GET /flags/check?key=dark-mode
-  const orgId = req.user.organizationId; // from JWT via authenticate middleware
+  const { key } = req.query;
+  const orgId = req.user.organizationId;
 
   const result = await flagService.checkFlagStatus(key, orgId);
 
